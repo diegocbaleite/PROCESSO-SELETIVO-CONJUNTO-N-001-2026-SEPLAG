@@ -1,0 +1,6 @@
+CREATE TABLE artista
+(
+    id   BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(200) NOT NULL,
+    tipo VARCHAR(50)  NOT NULL
+);
