@@ -3,6 +3,8 @@ package br.gov.mt.artistas_api.controller;
 import br.gov.mt.artistas_api.domain.entity.Album;
 import br.gov.mt.artistas_api.dto.AlbumRequestDTO;
 import br.gov.mt.artistas_api.service.AlbumService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,8 +18,8 @@ public class AlbumController {
     }
 
     @PostMapping
-    public Album criar(@RequestBody AlbumRequestDTO dto) {
-        return service.criar(dto);
+    public ResponseEntity<Album> criar(@Valid @RequestBody AlbumRequestDTO dto) {
+        return ResponseEntity.ok(service.criar(dto));
     }
 
     @PutMapping("/{id}")

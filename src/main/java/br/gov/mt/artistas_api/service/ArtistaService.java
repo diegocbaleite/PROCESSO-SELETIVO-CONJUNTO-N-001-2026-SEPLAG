@@ -9,9 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @Service
 public class ArtistaService {
 
@@ -72,13 +69,7 @@ public class ArtistaService {
         return new ArtistaResponseDTO(
                 artista.getId(),
                 artista.getNome(),
-                artista.getTipo(),
-                artista.getAlbuns() == null
-                        ? Set.of()
-                        : artista.getAlbuns()
-                        .stream()
-                        .map(a -> a.getNome())
-                        .collect(Collectors.toSet())
+                artista.getTipo()
         );
     }
 }

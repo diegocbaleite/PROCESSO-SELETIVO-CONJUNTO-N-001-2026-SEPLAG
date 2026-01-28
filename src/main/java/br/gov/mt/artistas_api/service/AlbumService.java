@@ -21,16 +21,21 @@ public class AlbumService {
     }
 
     public Album criar(AlbumRequestDTO dto) {
+
+        if (dto.artistasIds() == null || dto.artistasIds().isEmpty()) {
+            throw new IllegalArgumentException("É obrigatório informar ao menos um artista");
+        }
+
         Album album = new Album();
         album.setNome(dto.nome());
 
         var artistas = new HashSet<Artista>();
-        dto.artistasIds().forEach(id ->
-                artistas.add(
-                        artistaRepository.findById(id)
-                                .orElseThrow(() -> new RuntimeException("Artista não encontrado"))
-                )
-        );
+
+        dto.artistasIds().forEach(id -> {
+            Artista artista = artistaRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Artista não encontrado: " + id));
+            artistas.add(artista);
+        });
 
         album.setArtistas(artistas);
         return albumRepository.save(album);
