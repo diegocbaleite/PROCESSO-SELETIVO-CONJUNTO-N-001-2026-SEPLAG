@@ -1,10 +1,15 @@
 package br.gov.mt.artistas_api.dto;
 
-import java.util.Set;
+import br.gov.mt.artistas_api.domain.entity.Album;
 
 public record AlbumResponseDTO(
         Long id,
-        String nome,
-        Set<ArtistaResponseDTO> artistas
+        String nome
 ) {
+    public static AlbumResponseDTO fromEntity(Album album) {
+        return new AlbumResponseDTO(
+                album.getId(),
+                album.getNome()
+        );
+    }
 }
