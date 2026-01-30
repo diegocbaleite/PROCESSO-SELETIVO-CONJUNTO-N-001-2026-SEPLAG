@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -30,6 +31,5 @@ public class Artista {
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "album_id")
     )
-    private Set<Album> albuns;
-
+    private Set<Album> albuns = new HashSet<>();
 }
